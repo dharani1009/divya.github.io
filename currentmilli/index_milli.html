@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>milli second</title>
+</head>
+<body>
+
+<div style="display:flex;flex-wrap:wrap;">
+    <div style="margin-right:20px;border:1px solid grey;width:10%;height:100px">
+    Local time
+    <p id="clock"></p>
+    </div>
+
+    <div style="margin-right:20px;display:inline;border:1px solid grey;width:10%;height:100px">
+    24 hr time with secs
+    <p id ="hrstime"> </p>
+    </div>
+    <div style="margin-right:20px;border:1px solid grey;width:10%;height:100px">UNIX Time
+    <p id="millisec"></p>
+    </div>
+
+    
+    <div id="datee" style="margin-right:20px;border:1px solid grey;width:10%;height:100px"></div> 
+    <div style="margin-right:20px;border:1px solid grey;width:10%;height:100px">
+    UTC TIME
+    <div id="staticutctime" >
+   </div>
+   </div>
+   
+   <div style="margin-right:20px;border:1px solid grey;width:10%;height:100px"> 
+    UTC DATE    
+   <div id="staticutcdate">
+    </div>
+    </div> 
+</div>
+
+
+<!------<div>
+    <label>Convert milliseconds</label>
+    <input type="text" id="millisec" onkeyup="times()">
+        
+        <br>
+    <label> to UTC time & date</label>
+    <input type="number" id="utctime&date"><br>
+    <label> to Local time & date </label>
+    <input type="number" id="localtime&date">
+
+  
+    -------
+        satic milisec
+        <!DOCTYPE html>
+    <html>
+    <body>
+    
+    <h1>JavaScript Dates</h1>
+    <h2>The getFullYear() Method</h2>
+    
+    <p>getFullYear() returns the year with four digits:</p>
+    
+    <p id="dd"></p>
+    
+    <script>
+    var y='1983';
+    var m='';
+    var dt='';
+    var h='';
+    var mi='';
+    var sec='';
+    const d = new Date(y,m,dt,h,mi,sec);
+    let year = d.getFullYear();
+    let milli = d.getTime();
+    document.getElementById("dd").innerHTML = milli;
+    </script>
+    //407442600000
+    </body>
+    </html>------------>
+
+<!----dynamic mill input
+    <input type='text' id='box1' onkeyup="convert()">
+<input type='text' id='box2'>
+<input type='text' id='box3'>
+<input type='text' id='ans'>
+<p id="demo"></p>
+
+<script>
+function convert(){
+var y=new Number(document.getElementById('box1').value);
+var m=new Number(document.getElementById('box2').value);
+var dt=document.getElementById('box3');
+var anss=document.getElementById('ans');
+var formate=y+'-'+m+'-'+dt;
+const d = new Date(formate);
+const millisec=d.getTime();
+anss.value=millisec;
+}
+var y=new Number(2022);
+var m=11;
+var d=14;
+
+//var formate=y//+'-'+m+'-'+d
+var dt=new Date(y)
+var yy=dt.getFullYear()
+var mil=yy.getTime();
+document.getElementById("demo").innerHTML = mil;
+</script>
+    ------------------->
+
+
+
+
+
+
+   <!----- <input type="text" id="yyyy" onkeyup="condate()">
+    <input type="text" id="mm" onkeyup="condate()">
+    <input type="text" id="dd" onkeyup="condate()">
+    <input type="text" id="dismilli">
+</div>
+<input type="text" id="aa" onkeyup="ff()">
+ <input type="text" id="ab">
+ <input type="text" id="ac"></div>----->
+  
+ 
+    <P id="text">hi hello, bye</P>
+    <button id="copy-text-btn">Copy Seconds</button>
+
+  <script>
+    function copyText(htmlElement){
+        if(!htmlElement)
+        {
+            return;
+        }
+        let elementText = htmlElement.innerText;
+        let inputElement = document.createElement('input');
+        inputElement.setAttribute('value',elementText);
+        document.body.appendChild(inputElement);
+        inputElement.select();
+        document.execCommand('copy');
+        inputElement.parentNode.removeChild(inputElement);
+    }
+    document.querySelector('#copy-text-btn').onclick=
+    function (){
+        copyText(document.querySelector('#text'));
+    }
+ 
+ 
+    
+
+ 
+    
+ 
+ 
+ 
+    // function ff(){
+//     var a=parseInt(document.getElementById('aa').value);
+//     var b=document.getElementById('ab');
+//     var c=document.getElementById('ac');
+//     var dt=new Date(a);
+//     b.value=dt;
+//     c.value=dt
+// }
+
+//        var a=document.getElementById('clock')
+//          function time()
+//          {
+//          var dt=new Date();
+//          a.innerText=dt.toLocaleTimeString();
+//          }
+//          setInterval(time, 1000);
+        
+            //local hrs            
+        //Static UTC Time
+        // function dynamicgetlocaltime(){
+        //         var d=new Date();
+        //         var h=addZero(d.getHours());
+        //         var m=addZero(d.getMinutes());
+        //         var s=addZero(d.getSeconds());
+        //         var presentutctime=h+":"+m+":"+s;
+        //         document.getElementById('hrstime').innerHTML = presentutctime;
+        //     }
+        //     setInterval(dynamicgetlocaltime, 1000)
+        
+    //     var b=document.getElementById('hrstime');
+    //       var c=document.getElementById('sec');
+    //       var minss=document.getElementById('');
+    //       function gethrs()
+    //       {
+    //       var dt=new Date();
+    //       var dc=new Date();
+    //       b.innerText=dt.getHours();
+    //       c.innerText=dc.getSeconds();
+    //   }
+    //       setInterval(gethrs, 1000)
+        
+//      function getdynamicmillisec(){
+//         let date=new Date();
+//         let mints=date.getTime();
+//         document.getElementById('millisec').innerHTML =mints;
+//     }
+//     setInterval(getdynamicmillisec, 500);
+    
+    
+//     var datee = new Date();
+//     document.getElementById('datee').innerHTML=datee;
+    
+//      function addZero(i) {
+//    if (i < 10) {i = "0" + i}
+//    return i;
+// }
+// //start static utc time
+// function getutctime(){
+// const d = new Date();
+// let h = addZero(d.getUTCHours());
+// let m = addZero(d.getUTCMinutes());
+// let s = addZero(d.getUTCSeconds());
+// let time = h + ":" + m + ":" + s;
+// document.getElementById("staticutctime").innerHTML = time;
+// }
+// setInterval(getutctime, 1000)
+// //end static utc time
+// const statmonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+// const d = new Date();
+// let staticutcdt = d.getUTCDate()
+// let staticutcmonth = statmonths[d.getUTCMonth()];
+// let staticutcyear=d.getUTCFullYear();
+// let presentutcdt=staticutcdt+" "+staticutcmonth+" "+staticutcyear;
+// document.getElementById("staticutcdate").innerHTML = presentutcdt;
+   
+
+
+// function times() { 
+//     var a=parseInt(document.getElementById("millisec").value);
+//    var b1=document.getElementById('utctime&date');
+//    var c1=document.getElementById('localtime&date'); 
+    
+//     var ndat=new Date(a);
+//     b1.value=ndat;
+// document.getElementById("utctime&date").innerHTML = ndat;
+// b1.value=a.value;
+
+// }
+
+
+
+//    var universaldatetime=a.getUTCDate();
+// var b1=universaldatetime;  
+// b1.value=a1.value;
+//   var date=new Date();  
+//    b1.value=a1.value;
+//    c1.value=a1.value;
+   
+   
+   
+   
+//     function gettime(){const d = new Date(a);
+
+
+
+// let time = d.getTime();
+// document.getElementById("millisec").innerHTML = time;
+// }
+// setInterval(gettime, 1000)
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

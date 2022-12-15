@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!--------<h1>JavaScript Dates</h1>
+<h2>Using new Date()</h2>
+<p>new Date() without arguments, creates a date object with the current date and time:</p>
+<input type='number' id="mill">
+<input type="button" value="run" onclick="clk()">
+<p id="demo"></p>
+
+<script>
+var a1= document.getElementById('mill');    
+function clk(){
+     
+//const a=a1.value;
+const d = new Date(b);
+document.getElementById("demo").innerHTML = d;
+}
+</script>------->
+
+<input type='text' id='box1' onkeyup="convert()" required>
+<select id="box2" size=3>
+    <option value="0">January</option>
+    <option value="1">Febuary</option>
+    <option value="2">March</option>
+    <option value="3">April</option>
+    <option value="4">May</option>
+    <option value="5">June</option>
+    <option value="6">July</option>
+    <option value="7">August</option>
+    <option value="8">Sepetember</option>
+    <option value="9">October</option>
+    <option value="10">Novemeber</option>
+    <option value="11">December</option>
+</select>
+<!--------<input type='text' id='box2'  onkeyup="convert()" required>>------->
+
+<input type='text' id='box3'  onkeyup="convert()" required>
+<input type='text' id='box4' placeholder="hh" onkeyup="convert()" required>
+<input type='text' id='box5' placeholder="mi" onkeyup="convert()" required>
+<input type='text' id='box6' placeholder="sec" onkeyup="convert()" required>
+<input type='text' id='ans'>
+<p id="demo" style="border:1px solid black"></p>
+<p id="ddat" style="border:1px solid black"></p>
+<script>
+
+function convert(){
+    var y,m,dt;
+    y=(document.getElementById('box1').value);
+    m=(document.getElementById('box2').value);
+    dd=(document.getElementById('box3').value);
+    hr=(document.getElementById('box4').value);
+    min=(document.getElementById('box5').value);
+    sec=(document.getElementById('box6').value);
+    //m=parseInt(document.getElementById('box2').value);
+    //dt=parseInt(document.getElementById('box3').value);
+    var anss=document.getElementById('ans');
+    const d = new Date(y,m,dd,hr,min,sec);
+    const millisec=d.getTime();
+    ans.value=millisec;
+    
+
+
+
+//y=parseInt(document.getElementById('box1').value);
+ //m=parseInt(document.getElementById('box2').value);
+//dt=parseInt(document.getElementById('box3').value);
+ 
+//var formate=(y+'-'+m+'-'+dt);
+// if(y==y1){y=y1}else{y=0}
+// if(m==m1){m=m1}else{m=0}
+// if(dt==dt1){dt=dt1}else{dt=0}
+}
+
+//var yy=new Number(2022);
+//var mm=11;
+//var da=14;
+//var formate=y//+'-'+m+'-'+d
+//var dt=new Date(yy)
+//var ye=dt.getFullYear()
+//var mil=ye.getTime();
+//document.getElementById("demo").innerHTML = mil;
+//satic milisec
+var y='1983';
+//var m='6';
+//var dat='21';
+    const d = new Date(y);
+    let year = d.getFullYear();
+    let milli = d.getTime();
+    document.getElementById("ddat").innerHTML = milli;
+ 
+
+
+
+
+
+//var a='Tue Nov 15 2022 08:21:17';
+//var b=a.split(' ');
+//var c=b[4].split(':');
+//console.log(b);
+//console.log(c);
+
+
+
+
+
+	
+	
+	
+</script>
+<!-- 
+// var date = new Date();
+// 		var query=window.location.search;
+// 		var timezoneOffset = date.getTimezoneOffset();
+// 		var HAS_CUSTOM_TIMEZONE_OFFSET=query.indexOf("timezone=")>0;
+// 		if (HAS_CUSTOM_TIMEZONE_OFFSET){
+// 			var index = query.indexOf("timezone=");
+// 			var end = query.indexOf("&",index+1); if (end<0) end = query.length;
+// 			var offset=query.substr(index+9,end-index-9);
+// 			var isNegative=false;
+// 			if (offset[0]=='-'){
+// 				isNegative=true;
+// 				offset=offset.substr(1,offset.length);
+// 			}
+// 			var tokens = offset.split(":");
+// 			var hours=parseInt(tokens[0]);
+// 			var minutes=parseInt(tokens[1]);
+// 			timezoneOffset=-hours*60-minutes;
+// 			if (isNegative) {
+// 				timezoneOffset=-timezoneOffset;
+// 			}
+// 		}
+		
+// 		var offsetMillis = -timezoneOffset * 60000;
+// 	function convertToMillis(){
+// 			var year = new Number(document.getElementById('rightYear').value);
+// 			var month = new Number(document.getElementById('rightMonth').value)-1;
+// 			var day = new Number(document.getElementById('rightDay').value);
+// 			var hours = new Number(document.getElementById('rightHour').value);
+// 			var minutes = new Number(document.getElementById('rightMinute').value);
+// 			var seconds = new Number(document.getElementById('rightSecond').value);
+// 			var d = new Date(year, month, day, hours, minutes, seconds, 0);
+// 			var millis = d.getTime();
+// 			if (HAS_CUSTOM_TIMEZONE_OFFSET) millis+=(timezoneOffset-d.getTimezoneOffset())*60000;
+// 			document.getElementById('rightMillis').value=millis;
+// 			convertLink2.style.display='inline';
+// 			var convertUrl='https://currentmillis.com/?'+millis;
+// 			convertLink2.setAttribute('href',convertUrl);
+//-->
+
+</body></html>

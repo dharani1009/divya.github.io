@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="This page is used to check the current milliseconds and the time 
+     date for the millisecond which we give. 
+    You can get UTC time and Local time.">
+    <meta name="author" content="Christo">
+    <meta name="keywords" content="Hour, Year, Milliseconds, Clock, Minutes, Time, Currenttime, Months, UTC, Local time">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current MilliSecond</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" style="width:100%;">
+    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+</head>
+<style>
+    </style>
+<body style="background-color:#DDFFE7">
+    <div class="container-fluid">
+    
+        <div class="row text-center">
+            
+            <div class="col-sm-3">  
+                <div><br></div>
+                <div> 
+                <p style="font-size:15px;font-family:rockwell;color:#01949A;">UTC date</p>    
+                <p id="staticutcdate" style="margin-top:-20px;font-weight:bold;font-size:20px;color:#01949A;">
+                </p>
+                </div>
+                <div><br></div> 
+                <div>
+                    <p style="color:#01949A;font-family:rockwell">UTC time
+                        </p>
+
+                        <p id="staticutctime" style="margin-top:-20px;font-weight:bold;font-size:20px;color:#01949A;">
+
+                            </p>
+                    </div>
+                    <div><br></div>
+                    <div>
+                        <p style="color:#01949A;font-family:rockwell">UNIX time</p>
+                        <h4 id="dynamicmillisec" style="margin-top:-20px;font-weight:bold;font-size:20px;color:#01949A;"></h4>
+                        <p style="text-align:right;"><button id="copy-text-btn" style="background-color:#DB1F48;color:white !important;border:1px solid black;border-radius:5px;box-shadow: 3px 5px 10px grey;">
+                            <u>Click here to </u>Copy MilliSeconds </button></p>
+                    </div>
+
+                    <div><br></div>
+    
+                <div style="margin-top:20px;">
+                    <p style="border:1px solid #eff2f3;background-color:#98D7C2;font-family:rockwell; box-shadow: 3px 5px 10px grey;">
+                        milliseconds
+                    <input style="width:100%;border:1px solid white;" type="text" id="unix" name="" Placeholder="Enter your Milli Seconds" onkeyup="main()">
+                    </p>
+                    <p style="border:1px solid#eff2f3;font-family:rockwell;background-color:#98D7C2;">
+                        utc Time and date
+                    <input style="width:100%;border:1px solid white;cursor:text"type="text" id="utctime" name="" onkeyup="" disabled/>
+                    </p>    
+                    <p style="border:1px solid #eff2f3;font-family:rockwell;background-color:#98D7C2;">
+                        local time and date
+                    <input style="width:100%;border:1px solid white" type="text" id="localtime" name="" onkeyup="" disabled/>    
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-sm-3">    
+                <div><br></div>
+                <div class="row text-center">
+                <div class="col-12">
+                    <p style="color:#01949A;font-family:rockwell">local date</p>
+                    <p id="localdate" style="margin-top:-20px;font-weight:bold;font-size:20px;color:#01949A;"></p>
+                </div>
+                
+                <div><br></div>    
+                
+                <div class="col-12">
+                    <p style="color:#01949A;font-family:rockwell">local time</p>
+                    <p id="hrstime" style="margin-top:-20px;font-weight:bold;font-size:20px;color:#01949A;"></p>
+                </div>
+                
+                <div><br></div>
+                
+                <div class="col-12" >
+                    <p style="color:#01949A;font-family:rockwell">local timeZone (UTC+5h)</p>
+                    <p id="" style="margin-top:-20px;font-weight:bold;font-size:30px;color:#01949A;">
+                    India Standard
+                    </p>
+                </div>
+           
+            </div>
+            <div><br></div>
+ 
+            <div class="col-12 alert alert-danger" style="background-color:#DB1F48">
+                Please clear the year field and then change the month
+                </div>
+            
+            <div><br></div>
+            <div class="row text-right" style="background-color:#98D7C2;padding:1%;">
+
+                <p style="color:#01949A;;font-family:rockwell">Convert yyyy-mm-dd</p> 
+                <div class="col-4" style="border:0px 1px 0px 0px solid black;background-color:#98D7C2;margin-top: auto;margin-bottom: auto;">
+                  <form>
+                    <input style="width:100%;border:1px solid#eff2f3;background-color:snow;margin-left: 12px;" placeholder="YYYY" type="text" id="yearbox" onkeyup="convert()">
+                </div>    
+                    
+                <div class="col-4" style="background-color:snow;">
+                <select style="width:100%;border:1px solid#eff2f3;background-color:snow;" id="monthbox" size=3 onselect="convert()">
+                    <option value="0">January</option>
+                    <option value="1">Febuary</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">Sepetember</option>
+                    <option value="9">October</option>
+                    <option value="10">Novemeber</option>
+                    <option value="11">December</option>
+                </select>
+                </div>
+                
+                <div class="col-4" style="margin-top: auto;margin-bottom: auto;">
+                    <input style="width:100%;border:1px solid snow;margin-left:-23px;" placeholder="dd" type="text" id="datebox" onkeyup="convert()">
+                </div>
+            </div>
+            
+            <div><br></div>
+              
+            <div class="row text-cetner" style="background-color:#98D7C2;">
+                <p style="color:#01949A;;font-family:rockwell;">and hh-mm-ss</p>
+                <div class="col-4" style="background-color: snow;border-right:1px solid #97acb5;margin-top: auto;margin-bottom: auto;">
+                    <input style="width:100%;border:1px solid snow" type="text" id="hourbox" placeholder="hh" onkeyup="convert()">
+                </div>
+                
+                <div class="col-4" style="background-color: snow;border-left:1px solid #97acb5;border-right:1px solid #97acb5;margin-top: auto;margin-bottom: auto;">
+                    <input style="width:100%;border:1px solid snow" type="text" id="minutesbox" placeholder="mm" onkeyup="convert()">
+                </div>
+
+                <div class="col-4" style="background-color: snow;border-left:1px solid #97acb5;border-right:1px solid #97acb5;margin-top: auto;margin-bottom: auto;">
+                    <input style="width:100%;border:1px solid snow" type="text" id="secondbox" placeholder='ss' onkeyup="convert()">
+                </div>
+
+
+                </div>    
+                <div><br></div>
+            <div class="row text-cetner">
+                <div col="col-12">
+                    <div>
+                    <p style="font-size:15px;
+                            background-color:#98D7C2;
+                            font-family:rockwell;
+                            color:#01949A;">
+                                 to milliseconds since epoch:
+                        
+                    <input type='text' id='ans' style="width:100%;border:1px solid snow" disabled/>
+                   
+                    </p>
+                </div>
+                </div>
+            
+            </div>
+           
+            
+            </div>
+            
+            
+            
+            <div class="col-sm-6" style="font-family: rockwell;color: #76B947 !important;">
+                
+                <div class="row">
+                <div class="col-6">
+                    <p>
+                    <h2 style="color:#00221C !important;">
+                        Current<i class="bi bi-clock-history" style="color:orange"></i> millis
+                    </h2>
+                    </p>
+                    </div>
+                    </div>
+                    
+                <div class="row">    
+                    <div class="col-6">
+                    <h3 style="color:#00221C !important;" id="staticmillisec"></h3>
+                    </div>
+                </div>
+                <hr>
+                <div class="row" style="text-align:left">
+                    <div class="col-6" style="color:#004369">
+                        <p><strong>Date-Time<br> Calendar</strong></p>
+                       
+                    </div>
+                        <div class="col-6">
+                        <p>Milliseconds since Epoch · 
+                            Julian Date · HTTP format · 
+                            ISO 8601 ·</p>
+                            <p>GPS time</p>
+                        </div>
+                        <div class="col-12">
+                            Epochs & standards for reference. 
+                            Convert date / time formats on the fly. 
+                            Timestamps in milliseconds and other units.
+                        
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" style="text-align:left">
+                        <div class="col-6" style="color:#004369">
+                            <p><strong>Tutorials</strong></p>
+                           
+                        </div>
+                            <div class="col-6">
+                            <p>System.currentTimeMillis()· What is a Unix Timestamp ·</p>
+                                <p>What is UTC</p>
+                            </div>
+                            <div class="col-12">
+                                Timezones, Unix timestamps in milliseconds & UTC.
+                                 Java programming examples and explanations.
+                            
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="text-align:left">
+                            <div class="col-6" style="color:#004369">
+                                <p><strong>Sync Service</strong></p>
+                               
+                            </div>
+                                <div class="col-6">
+                                <p>Minutes since Epoch</p>
+                                </div>
+                                <div class="col-12">
+                                    Free synchronization web service. 3rd party time authority. 
+                                    Used in games, trial software, 
+                                    internet capable controllers, etc.                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" style="text-align:left">
+                                <div class="col-6" style="color:#004369">
+                                    <p><strong>Standards</strong></p>
+                                   
+                                </div>
+                                    <div class="col-6">
+                                    <p>Client-Centric Time · Persistence of Time</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>Software engineering standards for time-keeping.
+                                    </p>
+                                    <p> Architectural specifications developed for 3rd party reference and compliance.</p>
+                                    </div>
+                                </div>
+                                <hr>   
+                
+                                <div class="row" style="text-align:left">
+                                    
+                                        <div class="col-6" style="color:#004369">
+                                        <p><strong>
+                                            How to get the current time in milliseconds
+                                        </strong>
+                                        </p>
+                                        </div>
+                                        <div class="col-12">
+                                           <p> Methods to get the time
+                                             in milliseconds
+                                        </p>
+                                             <p>since the
+                                              UNIX epoch (January 1, 1970 
+                                              00:00:00 UTC) in various
+                                               programming languages.</p>
+
+                                        </div>
+                                    </div>
+                                
+                                    <hr>
+
+	  <div class="row" style="text-align:left;">
+        <div class="col-6" style="color:#004369"><strong>ActionScript</strong></div>
+        <div class="col-6" style="color:#578384">(new Date()).time</div>    
+    </div>
+
+    <br>
+
+    <div class="row" style="text-align:left">
+        <div class="col-6" style="color:#004369"><strong>Bash</strong></div>
+        <div class="col-6"style="color:#578384">date +%s%N | cut -b1-13</div>    
+    </div>
+
+	<br>
+
+    <div class="row" style="text-align:left">
+        <div class="col-6" style="color:#004369"><strong>C++</strong></div>
+        <div class="col-6"  style="color:#578384">
+            <p>std::chrono::duration_cast<std::chrono::milliseconds>
+            </p>
+            <p>(std::chrono::system_clock::now().<br>time_since_epoch()).count()</p>
+
+            </div>    
+    </div>
+    <br>
+    <div class="row" style="text-align:left">
+        <div class="col-6" style="color:#004369"><strong>C#.NET</strong></div>
+        <div class="col-6" style="color:#578384">DateTimeOffset.UtcNow.<br>ToUnixTimeMilliseconds()</div>    
+    </div>
+    <br>
+	<div class="row" style="text-align:left">
+        <div class="col-6" style="color:#004369"><strong>Clojure</strong></div>
+        <div class="col-6" style="color:#578384">(System/currentTimeMillis)</div>    
+    </div>
+	<br>
+	<div class="row" style="text-align:left">
+        <div class="col-6" style="color:#004369"><strong>Dart</strong></div>
+        <div class="col-6" style="color:#578384">DateTime.now().millisecondsSinceEpoch</div>    
+    </div>
+	<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Erlang</strong></div>
+    <div class="col-6" style="color:#578384">erlang:system_time(millisecond)</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Excel </strong></div>
+    <div class="col-6" style="color:#578384">/ Google Sheets*	= (NOW() - CELL_WITH_TIMEZONE_OFFSET_IN_<br>HOURS/24 - DATE(1970,1,1))*</div>    
+<div class="col-12" style="color:#578384"><strong>Google sheets</strong>* 86400000</div>
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Go / Golang</strong></div>
+    <div class="col-6" style="color:#578384">time.Now().UnixNano() / 1000000</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Hive*</strong></div>
+    <div class="col-6" style="color:#578384">
+        unix_timestamp() * 1000</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Java / Groovy / Kotlin</strong></div>
+    <div class="col-6" style="color:#578384">
+        System.currentTimeMillis()</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Javascript</strong></div>
+    <div class="col-6" style="color:#578384">
+        Date.now() // or: new Date().getTime()</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>MySQL*</strong></div>
+    <div class="col-6" style="color:#578384">
+        UNIX_TIMESTAMP() * 1000</div>    
+</div>	
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Objective-C</strong></div>
+    <div class="col-6" style="color:#578384">
+        (long long)([[NSDate date] timeIntervalSince1970] * 1000.0)</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>OCaml</strong></div>
+    <div class="col-6" style="color:#578384">
+        (1000.0 *. Unix.gettimeofday ())</div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369">
+        <strong>
+        Oracle PL/SQL*
+            </strong>
+    </div>
+    <div class="col-6" style="color:#578384">
+        SELECT (SYSDATE-CAST(TO_TIMESTAMP_TZ
+        ('01-01-1970 00:00:00+00:00',
+        'DD-MM-YYYY HH24:MI:SS TZH:TZM') as date)) 
+        * 24 * 60 * 60 * 1000 FROM DUAL    
+    </div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369">
+        <strong>
+            Perl
+        </strong>
+        	</div>
+    <div class="col-6" style="color:#578384">
+        use Time::HiRes qw(gettimeofday); print gettimeofday;
+   
+    </div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369">
+        <strong>
+        PHP
+        </strong>
+    </div>
+    <div class="col-6" style="color:#578384">
+        round(microtime(true) * 1000)
+   
+    </div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>PostgreSQL</strong></div>
+    <div class="col-6" style="color:#578384">
+        extract(epoch FROM now()) * 1000
+   
+    </div>    
+</div>
+<br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>PowerShell</strong></div>
+    <div class="col-6" style="color:#578384">
+        [DateTimeOffset]::UtcNow.<br>ToUnixTimeMilliseconds()
+   
+    </div>    
+</div>
+
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Python</strong></div>
+    <div class="col-6" style="color:#578384">
+        int(round(time.time() * 1000))
+   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Qt</strong></div>
+    <div class="col-6" style="color:#578384">
+        QDateTime::currentMSecsSinceEpoch()
+   
+    </div>    
+</div>	
+    <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>R*</strong></div>
+    <div class="col-6" style="color:#578384">
+        as.numeric(Sys.time()) * 1000
+   
+    </div>    
+</div>	
+    <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Ruby</strong></div>
+    <div class="col-6" style="color:#578384">
+        (Time.now.to_f * 1000).floor
+   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Rust</strong></div>
+    <div class="col-6" style="color:#578384">
+        std::time::SystemTime::now().duration_since<br>(UNIX_EPOCH).expect("error")
+
+   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Scala</strong></div>
+    <div class="col-6" style="color:#578384">
+        val timestamp: Long = System.currentTimeMillis
+   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>SQL Server</strong></div>
+    <div class="col-6" style="color:#578384">
+        DATEDIFF(ms, '1970-01-01 00:00:00', GETUTCDATE())
+   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>SQLite*</strong></div>
+    <div class="col-6" style="color:#578384">
+        STRFTIME('%s', 'now') * 1000   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>Swift*</strong></div>
+    <div class="col-6" style="color:#578384">
+        let currentTime = NSDate().timeIntervalSince1970 * 1000   
+    </div>    
+</div>
+        <br>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>VBScript / ASP</strong></div>
+    <div class="col-6" style="color:#578384">
+        <p>offsetInMillis = 60000 * GetTimeZoneOffset()</p>   
+        <p>WScript.Echo DateDiff("s", "01/01/1970 00:00:00", Now()) * 1000 -</p>
+        <p>offsetInMillis + Timer * 1000 mod 1000</p>
+    </div>    
+</div>
+        <Hr>	
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>Beta / Upcoming Technologies</strong></div>
+    <div class="col-12" style="color:#94C973">
+        Suggest languages / frameworks / APIs for getting the UNIX time in milliseconds here
+
+    </div>    
+</div>
+        <hr> 
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color:#004369"><strong>CockroachDB</strong></div>
+    <div class="col-6" style="color:#578384">
+        select extract(epoch_nanoseconds from now()) / 1000000
+
+    </div>  
+    <div class="col-12" style="color:#578384">
+        * starred examples might not reach millisecond accuracy but the value is multiplied to reach millisecond range
+
+    </div>  
+</div>
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>Time & Space</strong></div>
+    <div class="col-12" style="color:#94C973">
+        Scientific facts as well as controversies surrounding time keeping
+
+    </div>    
+</div>
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>Abbreviation</strong></div>
+    <div class="col-12" style="color:#94C973">
+        Millis is the popular abbreviation for 
+        milliseconds. 
+        The formal one would be ms. 
+        Another one is millisecs but this 
+        is very rare.
+    </div>    
+</div>
+
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>Leap seconds</strong></div>
+    <div class="col-12" style="color:#94C973">
+        Leap seconds are one-second adjustments 
+        added to the UTC time to synchronize it 
+        with solar time. Leap seconds tend to 
+        cause trouble with software.
+         For example, on June 30, 2012 
+         you had the time 23:59:60. 
+         Google uses a technique called 
+         leap smear on its servers, which, 
+         instead of adding an extra second, 
+         extend seconds prior to the end of 
+         the day by a few milliseconds each so that
+          the day will last 1000 milliseconds longer.
+    </div>    
+</div>
+
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>Theory of Relativity</strong></div>
+    <div class="col-12" style="color:#94C973">
+        The Special and General theories
+         of Relativity are taken into 
+         account by GPS receivers 
+         (found in planes, cars and mobile phones) 
+         and Earth-orbiting satellites 
+         to synchronize their time within 
+         a 20-30 nanosecond range. 
+         This happens because satellites 
+         are in motion relative to the planet 
+         so the observers on the planet will 
+         perceive time is passing more slowly 
+         for the satellites.
+    </div>    
+</div>
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>UTC vs. GMT simple take</strong></div>
+    <div class="col-12" style="color:#94C973">
+        UTC stands for Coordinated 
+        Universal Time. 
+        GMT stands for Greenwich Mean Time. 
+        UTC is a universal time 
+        keeping standard by itself. 
+        A time expressed in UTC is 
+        essentially the time on the whole planet. 
+        A time expressed in GMT is 
+        the time in the timezone of the 
+        Greenwich meridian. 
+        In current computer science 
+        problems 
+        (and probably most 
+        scientific ones) UTC
+         and GMT expressed in 
+         absolute value happen to have 
+         identical values so they have
+          been used interchangeably.
+    </div>    
+</div>
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>UTC vs. GMT complex take</strong></div>
+    <div class="col-12" style="color:#94C973">
+        Literature and history are a bit ambiguous. UTC essentially appeared in 1960, GMT being the ‘main thing’ until then. Unlike GMT which is based on solar time and originally calculated a second as a fraction of the time it takes for the Earth to make a full rotation around its axis, UTC calculates a second as “the duration of 9192631770 periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the cesium 133 atom”. UTC’s second is far more precise than GMT's original second. In 1972 leap seconds were introduced to synchronize UTC time with solar time. These 2 turning points (different definition of a second and the introduction of leap seconds) ‘forced’ GMT to be the same as UTC based on what seemed a gradual, tacit convention. If you were to calculate true GMT today i would see it based on its original definition of 1 second = 1/86400 days and this would for sure return a different absolute value than what UTC gives us. From this point of view the name “GMT” seems deprecated, but kept around for backward compatibility, traditional timezone based representation of time and sometimes legal reasons.
+
+    </div>    
+</div>
+    <hr>
+<div class="row" style="text-align:left">
+    <div class="col-6" style="color: #76B947 !important;"><strong>UTC vs. UT1</strong></div>
+    <div class="col-12" style="color:#94C973">
+        UT1 is the most precise form of universal time. It's computed using observations of quasars in outer space (which make up the International Celestial Reference Frame) and of distances between Earth and its satellites - natural (Moon) and artificial. UTC only tries to approximate UT1: it is kept within 0.9 seconds of UT1 by employing leap seconds.
+
+    </div>    
+</div>
+    <hr>
+<div class="row" style="text-align:justify">
+    <div class="col-6" style="color: #76B947 !important;"><strong>26 hour timezone span</strong></div>
+    <div class="col-12" style="color:#94C973">
+        Intuition tells us timezones should probably span from UTC+0 to UTC-12 to the west of the Greenwhich Meridian and from UTC+0 to UTC+12 to the east. In fact they can reach UTC+14. UTC+14 is Christmas Island's (Kiribati) time all year round and Samoa's daylight saving time during southern hemisphere summer. Therefore the maximum difference between 2 local times on Earth is 26 hours.
+
+    </div>    
+</div>
+    <hr>
+<div class="row" style="text-align:left;color:#94C973">
+    <div class="col-6" style="color: #76B947 !important;"><strong>Common Epochs & Date/Time Formats</strong></div>
+    <div class="col-12" style="color:#94C973">
+        the most common is of course the UNIX epoch but some systems and services have different epochs
+
+    </div>    
+<div class="col-3" style="color:#2F5233">UNIX epoch</div>
+    <div class="col-4" >1668611413598 ms</div>
+        <div class="col-4">since January 1, 1970</div>
+
+        <div class="col-3" style="color:#2F5233">LDAP / NT epoch</div>
+        <div class="col-4">133130850135980000 ticks</div>
+            <div class="col-4">since January 1, 1601</div>
+
+        <div class="col-3" style="color:#2F5233">NTP epoch</div>
+        <div class="col-4">3877600213598 ms</div>
+            <div class="col-4">since January 1, 1900</div>
+    
+        <div class="col-3" style="color:#2F5233">.NET MinValue</div>
+        <div class="col-4">638042082135980000 ticks</div>
+        <div class="col-4">since January 1, 0001</div>
+        
+            <div class="col-3" style="color:#2F5233">Mac OS X</div>
+        <div class="col-4">690304213598 ms</div>
+            <div class="col-4">since January 1, 2001</div>
+
+            <div class="col-3" style="color:#2F5233">ISO 8601</div>
+            <div class="col-4">2022-11-16T15:10:13Z</div>
+                <div class="col-4">2022-11-16T20:40:13+05:30</div>
+            
+    
+    <div col-12 style="color:#94C973">* 1 tick = 0.0001 milliseconds = 100 nanoseconds </div>
+        
+    <hr>       
+    <div class="row" style="text-align:justify">
+        <div class="col-6" style="color: #76B947 !important;"><strong>Genesis & History</strong></div>
+        
+        <div class="col-12">
+            This site provides the current time in milliseconds elapsed since the UNIX epoch (Jan 1, 1970) as well as in other common formats including local / UTC time comparisons. You can also convert milliseconds to date & time and the other way around. More importantly, this site offers a time navigation service for human users and a time authority service for programmatic usage    
+        </div>    
+        <div><br></div>
+        <div class="col-12">
+            The "current millis" story started with me debugging my Android application. In Android you tell an alarm when to come up by passing a simple number. This number has to be so large that it can encompass all the time passed since midnight January 1st, 1970 but sufficiently small that it can fit into existing data structures and keep going enough time in the future. Precision: millisecond. Why 1970 you ask? It's just a convention: it was the roundest most recent year to the point in time people actually started thinking about a universal measure of time.
+        </div>
+        <div><br></div>
+
+        <div class="col-12">
+            As i was debugging i needed something to 
+            tell me what the current time in ms is. Since a program was already running, rather than just 
+            inspecting Java's System.currentTimeMillis() or running a program that shows it to me, 
+            i figured i'll open a web page that shows it. There was nothing like it in the search results. 
+            The funniest result i saw was telling me the local time in Millis, 
+            Massachusetts. I couldn't believe there isn't a site that does such a simple thing. 
+            I wrote currentmillis.com and hit enter. My ISP's page popped up telling me there is no such page. 
+            I then checked with my hosting provider and it turned out this incredibly simple domain was available. 
+            So i bought it and turned it into a single-serving website which shows, you guessed it, the current time in ms.
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            My goal for this website is that programmers all around the world know: whenever you want to see the current UTC time or the current time in ms (or in other common formats), you can do so easily at CurrentMillis.com
+        </div>
+    
+    </div>
+
+    <hr>
+    <div class="row" style="text-align:justify">
+        <div class="col-6" style="color: #76B947 !important;"><strong>Mission & Strategy</strong></div>
+        
+        <div class="col-12">
+            The mission of the CurrentMillis.com family of websites & services is to synchronize humans and machines around the world.
+        </div>    
+        <br>        
+        <div class="col-12">
+            This mission statement has a strong foundation in metaphysics: 
+            Synchronization is a common denominator for the forces that govern 
+            the universe and is a sign of consciousness. For example..       
+         </div>
+         <div><br></div>
+        <div class="col-12">
+            <ul>
+            <li>
+                Particles in stars and planets 
+                are synchronized as they spin around their own axii and along other trajectories, just as solar systems are synchronized in their motion around the center of the galaxy
+                    </li>
+                <li>Cells in every living thing are synchronized in terms of function just as they are synchronized against day / night cycles
+</li></ul>
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            I consider synchronization an all-encompassing phenomenon driven by “conscious features” from large to small through spatial notions like gravity / attraction and informational notions like communication / intent.
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            Humans have expanded in spatial & informational terms greatly in the last centuries to the point that travel and access to information is available around the planet and even beyond, through proven technologies.
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            However, “temporal navigation” references used by the general public seem to remain arbitrary, ambiguous and limited in terms of device use & engineering.
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            In general use, i made it my purpose <font color="black">to help people and machines synchronize,</font> 
+            by offering a family of free browser / HTTP-based services with lightweight protocols.
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            Beyond general use, there is also a need to synchronize the “synchronizers” 
+            at the software engineering level, by offering straight-forward browser-based 
+            time conversion tools and <font color="black ">by crystallizing time engineering standards.</font>
+        </div>
+        <div><br></div>
+        <div class="col-12">
+            But more importantly, the aim is to connect time engineering knowledge with time conversion and time navigation by using a functional red line that defines a strategy, such as it is, for time-keeping in the future.
+        </div>
+
+    </div>
+    <hr>
+    <div class="row" style="text-align:justify;color:#94C973">
+        <div class="col-6" style="color: #76B947 !important;">
+            <strong>Design Principles</strong>
+        </div>
+        
+        <div class="col-12">
+            <div>
+            <ul>    
+                <li><p>"Explicit Persistence"</p></li>
+            </ul>
+
+            <p>The ability to use software as a service (without heavy-weight protocols such as authentication) is amazing. Avoiding server-side state (such as sessions) or client-side state (such as cookies) gives us an incredible opportunity to persist data in something which is shared between humans and processed by machines seamlessly: a URL. In addition, "persistence in the URL" is transparent to the user and allows not only full customization but high-speed customization as well.
+            </p>
+            </div>
+            <br>
+
+            <div>
+                <ul>
+                <li><p>"Practical Moonshooting"</p></li></ul>
+                <p>A continuous succession of development / evaluation iterations for several features at once, to filter out experiments until those features that are useful remain. They are ambitious and ingenious steps, but not over-reaching, so that the next principle, that of Consistency, can be applied to link services together into a family.
+                </p>
+            </div>
+            <br>
+            
+            <div>
+
+                <ul><li><p>Consistency</p></li></ul>
+                <p>To think of consistency as the ability to be remembered is empowering. When you expect a button to be there and it actually is: this is a ticket to a nice ride. When it looks and feels the same across a family of services, you instantly recognize it and you know what it does. This allows you, as a user, to think ahead and use your brain-power closer to its potential.
+
+                </p>
+            </div>
+            <hr>
+            <div>
+
+                <p style="color: #76B947 !important;"><strong>World View</strong></p>
+                <p>The mentioned strategy and design principles emerge from a certain world view of everything and everyone being subject to order and entropy. One of the most relevant ideas that arise from such a model, beside the cosmological and scientific implications, is the fact that we all originate from (and are subject to) the same universal phenomena and that, in the end, we are collectively responsible for the resources we share - such as the Earth. Thus we have to elevate our consciousness so that it's capable not only of individual or local but also of collective and global perception of problems and solutions.
+
+                </p>
+            </div>
+            <hr>
+
+            <div>
+
+                <p style="color: #76B947 !important;"><strong>Support the website</strong></p>
+                <p>Feel free to send a message to <font color="red">tocarnival481@gmail.com</font> - i always like to collect feedback about the site. If you feel the need to support more directly: I do read a lot :) paperbacks, hardcovers, e-books and audiobooks... i wouldn't say no to a gift card :)
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+ 
+
+
+
+
+</div>
+
+
+
+
+    </div>
+                
+            
+    
+    
+        </div>
+         
+    
+    
+    
+    </div>
+       
+       
+       
+       
+       
+       
+       
+            <script type="text/javascript" src="js/myscript.js"></script>
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+            <script type="text/javascript" src="js/popper.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encode decode</title>
+</head>
+<body>
+    <div class="col-md-4" style="border:1px solid green">
+        <h2>Encode your Content</h2>
+<p>   
+         <label>Content</label><br>
+<textarea rows="5" cols="50" id="cont" name="content" placeholder="Type here" ></textarea>
+</p>
+<p>
+<label>Encode</label><br>
+<textarea rows="5" cols="50" id="ende" name="encode" placeholder="Encoded Content"></textarea>
+</p>
+<p>
+<input type="submit" value="Encode" id="enbtn" onclick="encode()">
+</p>
+</div>
+<!------------------------------>
+<div class="col-md-4" style="border:1px solid green">
+<h2>Decode your Content</h2>
+<p>
+Content
+<textarea rows="5" cols="50" id="decodecont" name="cont" placeholder="Type here" ></textarea>
+</p>
+<p>
+Decode
+<textarea rows="5" cols="50" id="dede" name="decode" placeholder="Encoded Content"></textarea>
+</p>
+<p>
+<input type="submit" id="debtn" value="Decode" onclick="decode()">
+</p>
+</div>
+</div>
+</div>
+<script>
+    function encode(){
+        var content=document.getElementById('cont');
+        var encode=document.getElementById('ende');
+        var encodebutton=document.getElementById('enbtn');
+        encodebutton.addEventListener('click', () =>{
+            encode.value=btoa(content.value);
+        }
+        );
+
+    }
+    function decode(){
+        var decodecontent=document.getElementById('decodecont');
+        var decode=document.getElementById('dede');
+        var decodebutton=document.getElementById('debtn');
+        decodebutton.addEventListener('click', () =>{
+            decode.value = atob(decodecontent.value);
+        }
+        );
+    }
+</script>
+</body>
+</html>
